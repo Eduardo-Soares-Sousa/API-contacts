@@ -64,6 +64,7 @@ public class SecurityConfig {
                         .name("Admin")
                         .email("admin@email.com")
                         .password(encoder.encode("admin123"))
+                        .phone("000000000")
                         .role(Role.ADMIN)
                         .build());
             }

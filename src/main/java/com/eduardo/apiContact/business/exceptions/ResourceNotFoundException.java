@@ -1,4 +1,4 @@
-package com.eduardo.apiContact.exceptions;
+package com.eduardo.apiContact.business.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
