@@ -1,9 +1,8 @@
 package com.eduardo.apiContact.model.dto;
 
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,19 +12,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDto {
+public class ContactDto {
     @NotBlank(message = "Name is required")
     private String name;
-    @Email
-    @NotBlank(message = "Email is required")
     private String email;
-    @NotBlank(message = "Password is required")
-    @Size(min = 6)
-    private String password;
     @NotBlank(message = "Phone is required")
     @Pattern(
             regexp = "\\(\\d{2}\\) \\d{5}-\\d{4}",
             message = "Phone must be in format (00) 00000-0000"
     )
     private String phone;
+    private String description;
 }

@@ -7,6 +7,7 @@ import com.eduardo.apiContact.model.dto.UserDto;
 import com.eduardo.apiContact.model.entity.User;
 import com.eduardo.apiContact.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,6 @@ public class UserService {
         return userConverter.converterToUserDto(userRepository.save(user));
     }
 
-    public void emailExist(String email) {
-        if(userRepository.existsByEmail(email)) {
-            throw new ConflitException("The email " + email + " already registered");
-        }
-    }
-
     public UserDto findByEmail(String email) {
         return userConverter.converterToUserDto(userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Email address not found"))
@@ -40,5 +35,11 @@ public class UserService {
 
     public void deleteUserByEmail(String email) {
         userRepository.deleteByEmail(email);
+    }
+
+    private void emailExist(String email) {
+        if(userRepository.existsByEmail(email)) {
+            throw new ConflitException("The email " + email + " already registered");
+        }
     }
 }
