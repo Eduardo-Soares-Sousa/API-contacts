@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     Optional<Contact> findByUserAndPhone(User user, String phone);
+    Optional<Contact> findByIdAndUser(Long id, User user);
     boolean existsByUserAndPhone(User user, String phone);
-    void deleteByUserAndId(User user, Long id);
     Page<Contact> findByUser(User user, Pageable pageable);
 }

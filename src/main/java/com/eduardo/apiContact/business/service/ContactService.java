@@ -60,7 +60,10 @@ public class ContactService {
 
     public void deleteById(Long id) {
         User user = getLoggedUser();
-        contactRepository.deleteByUserAndId(user, id);
+        Contact contact = contactRepository.findByIdAndUser(id, user)
+                .orElseThrow(() -> new ResourceNotFoundException("Contact not found"));
+
+        contactRepository.delete(contact);
     }
 
     private User getLoggedUser() {

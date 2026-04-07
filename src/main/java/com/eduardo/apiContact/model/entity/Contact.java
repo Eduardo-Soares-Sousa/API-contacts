@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "phone", nullable = false)

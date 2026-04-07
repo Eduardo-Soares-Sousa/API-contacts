@@ -3,6 +3,7 @@ package com.eduardo.apiContact.business.service;
 import com.eduardo.apiContact.business.converter.UserConverter;
 import com.eduardo.apiContact.business.exceptions.ConflitException;
 import com.eduardo.apiContact.business.exceptions.ResourceNotFoundException;
+import com.eduardo.apiContact.enums.Role;
 import com.eduardo.apiContact.model.dto.UserDto;
 import com.eduardo.apiContact.model.entity.User;
 import com.eduardo.apiContact.repository.UserRepository;
@@ -22,6 +23,7 @@ public class UserService {
         emailExist(userDto.getEmail());
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         User user = userConverter.converterToUserEntity(userDto);
+        user.setRole(Role.USER);
 
         return userConverter.converterToUserDto(userRepository.save(user));
     }
